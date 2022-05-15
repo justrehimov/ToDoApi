@@ -2,6 +2,7 @@ package com.nsp.todo.controller;
 
 import com.nsp.todo.model.dto.UserDto;
 import com.nsp.todo.model.response.Response;
+import com.nsp.todo.model.response.ResponseContainer;
 import com.nsp.todo.model.response.ResponseModel;
 import com.nsp.todo.model.response.UserResponse;
 import com.nsp.todo.service.UserService;
@@ -39,22 +40,22 @@ public class UserController {
 
     @GetMapping("/confirm/{token}")
     @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
-    public Response changeMail(@PathVariable("token") String token){
+    public ResponseContainer changeMail(@PathVariable("token") String token){
         userService.changeMail(token);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
-    public Response updateUser(@PathVariable("id") Long id, @RequestBody UserDto userDto){
+    public ResponseContainer updateUser(@PathVariable("id") Long id, @RequestBody UserDto userDto){
         userService.updateUser(userDto,id);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Response deleteUser(@PathVariable Long id){
+    public ResponseContainer deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 }

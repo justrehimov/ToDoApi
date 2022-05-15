@@ -9,7 +9,7 @@ import java.util.Date;
 @Setter
 public class TaskResponse {
     private Long id;
-    private String title;
+    //private String title;
     private String description;
     private String path;
     private Date deadline;

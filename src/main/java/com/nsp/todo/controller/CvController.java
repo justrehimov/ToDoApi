@@ -2,6 +2,7 @@ package com.nsp.todo.controller;
 
 import com.nsp.todo.model.response.CvResponse;
 import com.nsp.todo.model.response.Response;
+import com.nsp.todo.model.response.ResponseContainer;
 import com.nsp.todo.model.response.ResponseModel;
 import com.nsp.todo.service.CvService;
 import lombok.AllArgsConstructor;
@@ -39,9 +40,9 @@ public class CvController {
 
     @PutMapping(value = "/{id}",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
-    public Response updateCv(@PathVariable("id") Long id, @RequestPart("file")MultipartFile multipartFile){
+    public ResponseContainer updateCv(@PathVariable("id") Long id, @RequestPart("file")MultipartFile multipartFile){
         cvService.updateCv(multipartFile,id);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
 }

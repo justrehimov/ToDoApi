@@ -1,5 +1,6 @@
 package com.nsp.todo.controller;
 
+import com.nsp.todo.model.response.ResponseContainer;
 import com.nsp.todo.service.impl.UserDetailsServiceImpl;
 import com.nsp.todo.model.response.Response;
 import lombok.AllArgsConstructor;
@@ -16,17 +17,15 @@ public class RegisterController {
     private final UserDetailsServiceImpl userDetailsService;
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
-    public Response register(@RequestPart("user") String user, @RequestPart("cv")MultipartFile multipartFile){
+    public ResponseContainer register(@RequestPart("user") String user, @RequestPart("cv")MultipartFile multipartFile){
        userDetailsService.register(user,multipartFile);
-       return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
     @GetMapping("/confirm/{token}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
-    public Response confirmUser(@PathVariable("token") String token){
+    public ResponseContainer confirmUser(@PathVariable("token") String token){
         userDetailsService.confirmUser(token);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
 }

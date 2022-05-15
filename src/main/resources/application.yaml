@@ -6,12 +6,12 @@ spring:
     password:
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
   mail:
     default-encoding: UTF-8
     host: smtp.gmail.com
-    username: ekadrcompany@gmail.com
-    password: yqhdrocxesiminum
+    username: rehimovcompany@gmail.com
+    password: cjtttmnjtvmipapq
     port: 587
     properties:
       mail:

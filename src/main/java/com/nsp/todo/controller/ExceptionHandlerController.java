@@ -3,6 +3,7 @@ package com.nsp.todo.controller;
 import com.nsp.todo.enums.Status;
 import com.nsp.todo.exception.*;
 import com.nsp.todo.model.response.Response;
+import com.nsp.todo.model.response.ResponseContainer;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,143 +18,157 @@ public class ExceptionHandlerController {
 
 
     @ExceptionHandler(UserException.class)
-    public Response handleUserException(UserException ex){
-        return Response.builder()
+    public ResponseContainer handleUserException(UserException ex){
+        Response r = Response.builder()
                 .status(ex.getStatus().name())
                 .message(ex.getStatus().getMessage())
                 .errors(ex.getErrors())
                 .code(ex.getStatus().getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
     @ExceptionHandler(LanguageException.class)
-    public Response handleLanguageException(LanguageException ex){
-        return Response.builder()
+    public ResponseContainer handleLanguageException(LanguageException ex){
+        Response r = Response.builder()
                 .status(ex.getStatus().name())
                 .message(ex.getStatus().getMessage())
                 .errors(ex.getErrors())
                 .code(ex.getStatus().getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
     @ExceptionHandler(TechnologyException.class)
-    public Response handleTechnologyException(TechnologyException ex){
-        return Response.builder()
+    public ResponseContainer handleTechnologyException(TechnologyException ex){
+        Response r = Response.builder()
                 .status(ex.getStatus().name())
                 .message(ex.getStatus().getMessage())
                 .errors(ex.getErrors())
                 .code(ex.getStatus().getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
     @ExceptionHandler(CountryException.class)
-    public Response handleCountryException(CountryException ex){
-        return Response.builder()
+    public ResponseContainer handleCountryException(CountryException ex){
+        Response r = Response.builder()
                 .status(ex.getStatus().name())
                 .message(ex.getStatus().getMessage())
                 .errors(ex.getErrors())
                 .code(ex.getStatus().getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
     @ExceptionHandler(CityException.class)
-    public Response handleCityException(CityException ex){
-        return Response.builder()
+    public ResponseContainer handleCityException(CityException ex){
+        Response r = Response.builder()
                 .status(ex.getStatus().name())
                 .message(ex.getStatus().getMessage())
                 .errors(ex.getErrors())
                 .code(ex.getStatus().getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
     @ExceptionHandler(AnswerException.class)
-    public Response handleAnswerException(AnswerException ex){
-        return Response.builder()
+    public ResponseContainer handleAnswerException(AnswerException ex){
+        Response r = Response.builder()
                 .status(ex.getStatus().name())
                 .message(ex.getStatus().getMessage())
                 .errors(ex.getErrors())
                 .code(ex.getStatus().getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
     @ExceptionHandler(TaskException.class)
-    public Response handleTaskException(TaskException ex){
-        return Response.builder()
+    public ResponseContainer handleTaskException(TaskException ex){
+        Response r = Response.builder()
                 .status(ex.getStatus().name())
                 .message(ex.getStatus().getMessage())
                 .errors(ex.getErrors())
                 .code(ex.getStatus().getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
     @ExceptionHandler(TokenException.class)
-    public Response handleTokenException(TokenException ex){
-        return Response.builder()
+    public ResponseContainer handleTokenException(TokenException ex){
+        Response r = Response.builder()
                 .status(ex.getStatus().name())
                 .message(ex.getStatus().getMessage())
                 .errors(ex.getErrors())
                 .code(ex.getStatus().getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
     @ExceptionHandler(ValidationException.class)
-    public Response handleValidationException(ValidationException ex){
-        return Response.builder()
+    public ResponseContainer handleValidationException(ValidationException ex){
+        Response r = Response.builder()
                 .status(ex.getStatus().name())
                 .message(ex.getStatus().getMessage())
                 .errors(ex.getErrors())
                 .code(ex.getStatus().getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
     @ExceptionHandler(CvException.class)
-    public Response handleCvException(CvException ex){
-        return Response.builder()
+    public ResponseContainer handleCvException(CvException ex){
+        Response r = Response.builder()
                 .status(ex.getStatus().name())
                 .message(ex.getStatus().getMessage())
                 .errors(ex.getErrors())
                 .code(ex.getStatus().getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
     @ExceptionHandler(AddressException.class)
-    public Response handleAddressException(AddressException ex){
-        return Response.builder()
+    public ResponseContainer handleAddressException(AddressException ex){
+        Response r = Response.builder()
                 .status(ex.getStatus().name())
                 .message(ex.getStatus().getMessage())
                 .errors(ex.getErrors())
                 .code(ex.getStatus().getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
     @ExceptionHandler(NotificationException.class)
-    public Response handleNotificationException(NotificationException ex){
-        return Response.builder()
+    public ResponseContainer handleNotificationException(NotificationException ex){
+        Response r = Response.builder()
                 .status(ex.getStatus().name())
                 .message(ex.getStatus().getMessage())
                 .errors(ex.getErrors())
                 .code(ex.getStatus().getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
     @ExceptionHandler(SocketTimeoutException.class)
-    public Response handleSocketTimeoutException(SocketTimeoutException ex){
-        return Response.builder()
+    public ResponseContainer handleSocketTimeoutException(SocketTimeoutException ex){
+        Response r = Response.builder()
                 .status(Status.EMAIL_SENT_ERROR.name())
                 .message(Status.EMAIL_SENT_ERROR.getMessage())
                 .errors(new HashSet<>())
                 .code(Status.EMAIL_SENT_ERROR.getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Response handleMethodArgumentNotValidException(BindingResult ex){
-        return Response.builder()
+    public ResponseContainer handleMethodArgumentNotValidException(BindingResult ex){
+        Response r = Response.builder()
                 .status(Status.VALIDATION_ERROR.name())
                 .message(Status.VALIDATION_ERROR.getMessage())
                 .errors(ex.getFieldErrors().stream().map(e->e.getField()+":"+e.getDefaultMessage()).collect(Collectors.toSet()))
                 .code(Status.VALIDATION_ERROR.getCode())
                 .build();
+        return ResponseContainer.ok(r);
     }
 
 

@@ -3,6 +3,7 @@ package com.nsp.todo.controller;
 import com.nsp.todo.model.dto.LanguageDto;
 import com.nsp.todo.model.response.LanguageResponse;
 import com.nsp.todo.model.response.Response;
+import com.nsp.todo.model.response.ResponseContainer;
 import com.nsp.todo.model.response.ResponseModel;
 import com.nsp.todo.service.LanguageService;
 import com.nsp.todo.validation.group.AdvancedInfo;
@@ -35,23 +36,23 @@ public class LanguageController {
     
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Response addLanguage(@Validated(AdvancedInfo.class) @RequestBody LanguageDto languageDto){
+    public ResponseContainer addLanguage(@Validated(AdvancedInfo.class) @RequestBody LanguageDto languageDto){
         languageService.addLanguage(languageDto);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
     
     @PutMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE})
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Response updateLanguage(@PathVariable("id") Long id, @Validated(AdvancedInfo.class) @RequestBody LanguageDto languageDto){
+    public ResponseContainer updateLanguage(@PathVariable("id") Long id, @Validated(AdvancedInfo.class) @RequestBody LanguageDto languageDto){
         languageService.updateLanguage(languageDto, id);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Response deleteLanguage(@PathVariable("id") Long id){
+    public ResponseContainer deleteLanguage(@PathVariable("id") Long id){
         languageService.deleteLanguage(id);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
 }

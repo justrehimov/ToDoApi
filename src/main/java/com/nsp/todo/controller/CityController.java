@@ -5,6 +5,7 @@ import com.nsp.todo.model.dto.CityDto;
 import com.nsp.todo.model.dto.update.UpdateCityDto;
 import com.nsp.todo.model.response.CityResponse;
 import com.nsp.todo.model.response.Response;
+import com.nsp.todo.model.response.ResponseContainer;
 import com.nsp.todo.model.response.ResponseModel;
 import com.nsp.todo.service.CityService;
 import com.nsp.todo.validation.group.AdvancedInfo;
@@ -43,22 +44,22 @@ public class CityController {
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Response addCity(@Validated(AdvancedInfo.class) @RequestBody CityDto cityDto){
+    public ResponseContainer addCity(@Validated(AdvancedInfo.class) @RequestBody CityDto cityDto){
         cityService.addCity(cityDto);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Response updateCity(@PathVariable("id") Long id,@Validated(AdvancedInfo.class) @RequestBody UpdateCityDto cityDto){
+    public ResponseContainer updateCity(@PathVariable("id") Long id,@Validated(AdvancedInfo.class) @RequestBody UpdateCityDto cityDto){
         cityService.updateCity(cityDto, id);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Response deleteCity(@PathVariable("id") Long id){
+    public ResponseContainer deleteCity(@PathVariable("id") Long id){
         cityService.deleteCity(id);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 }

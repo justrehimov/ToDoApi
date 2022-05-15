@@ -3,6 +3,7 @@ package com.nsp.todo.controller;
 import com.nsp.todo.model.dto.CountryDto;
 import com.nsp.todo.model.response.CountryResponse;
 import com.nsp.todo.model.response.Response;
+import com.nsp.todo.model.response.ResponseContainer;
 import com.nsp.todo.model.response.ResponseModel;
 import com.nsp.todo.service.CountryService;
 import com.nsp.todo.validation.group.AdvancedInfo;
@@ -35,23 +36,23 @@ public class CountryController {
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Response addCountry(@Validated(AdvancedInfo.class) @RequestBody CountryDto countryDto){
+    public ResponseContainer addCountry(@Validated(AdvancedInfo.class) @RequestBody CountryDto countryDto){
         countryService.addCountry(countryDto);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Response updateCountry(@Validated(AdvancedInfo.class) @RequestBody CountryDto countryDto,@PathVariable("id") Long id){
+    public ResponseContainer updateCountry(@Validated(AdvancedInfo.class) @RequestBody CountryDto countryDto,@PathVariable("id") Long id){
         countryService.updateCountry(countryDto, id);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Response deleteCountry(@PathVariable("id") Long id){
+    public ResponseContainer deleteCountry(@PathVariable("id") Long id){
         countryService.deleteCountry(id);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
 }

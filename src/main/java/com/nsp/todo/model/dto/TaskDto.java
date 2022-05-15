@@ -15,10 +15,10 @@ import java.util.Set;
 @Getter
 @Setter
 public class TaskDto {
-    @NotNull(groups = {AdvancedInfo.class})
-    @NotBlank(groups = {AdvancedInfo.class})
-    @Size(min = 3,groups = {AdvancedInfo.class})
-    private String title;
+//    @NotNull(groups = {AdvancedInfo.class})
+//    @NotBlank(groups = {AdvancedInfo.class})
+//    @Size(min = 3,groups = {AdvancedInfo.class})
+//    private String title;
     @NotNull(groups = {AdvancedInfo.class})
     @NotBlank(groups = {AdvancedInfo.class})
     @Size(min = 3,groups = {AdvancedInfo.class})

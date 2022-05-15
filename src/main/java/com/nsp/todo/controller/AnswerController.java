@@ -3,6 +3,7 @@ package com.nsp.todo.controller;
 import com.nsp.todo.model.dto.update.UpdateAnswerDto;
 import com.nsp.todo.model.response.AnswerResponse;
 import com.nsp.todo.model.response.Response;
+import com.nsp.todo.model.response.ResponseContainer;
 import com.nsp.todo.model.response.ResponseModel;
 import com.nsp.todo.service.AnswerService;
 import com.nsp.todo.validation.group.AdvancedInfo;
@@ -42,23 +43,23 @@ public class AnswerController {
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
-    public Response uploadAnswer(@RequestPart("task") String task, @RequestPart("file") MultipartFile multipartFile){
+    public ResponseContainer uploadAnswer(@RequestPart("task") String task, @RequestPart("file") MultipartFile multipartFile){
         answerService.uploadAnswer(task,multipartFile);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
-    public Response updateAnswer(@PathVariable("id") Long id,@Validated(AdvancedInfo.class) @RequestBody UpdateAnswerDto answerDto){
+    public ResponseContainer updateAnswer(@PathVariable("id") Long id,@Validated(AdvancedInfo.class) @RequestBody UpdateAnswerDto answerDto){
         answerService.updateAnswer(answerDto,id);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
-    public Response deleteAnswer(@PathVariable("id") Long id){
+    public ResponseContainer deleteAnswer(@PathVariable("id") Long id){
         answerService.deleteAnswer(id);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
 

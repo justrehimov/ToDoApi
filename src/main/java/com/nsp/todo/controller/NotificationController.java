@@ -4,6 +4,7 @@ import com.nsp.todo.model.dto.NotificationDto;
 import com.nsp.todo.model.dto.update.UpdateNotificationDto;
 import com.nsp.todo.model.response.NotificationResponse;
 import com.nsp.todo.model.response.Response;
+import com.nsp.todo.model.response.ResponseContainer;
 import com.nsp.todo.model.response.ResponseModel;
 import com.nsp.todo.service.NotificationService;
 import com.nsp.todo.validation.group.AdvancedInfo;
@@ -42,23 +43,23 @@ public class NotificationController {
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Response addNotification(@Validated(AdvancedInfo.class) @RequestBody NotificationDto notificationDto){
+    public ResponseContainer addNotification(@Validated(AdvancedInfo.class) @RequestBody NotificationDto notificationDto){
         notificationService.addNotification(notificationDto);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Response updateNotification(@PathVariable("id") Long id,@RequestBody UpdateNotificationDto notificationDto){
+    public ResponseContainer updateNotification(@PathVariable("id") Long id,@RequestBody UpdateNotificationDto notificationDto){
         notificationService.updateNotification(notificationDto, id);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public Response deleteNotification(@PathVariable("id") Long id){
+    public ResponseContainer deleteNotification(@PathVariable("id") Long id){
         notificationService.deleteNotification(id);
-        return Response.getSuccess();
+        return ResponseContainer.ok(Response.getSuccess());
     }
 
 }
