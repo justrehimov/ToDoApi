@@ -140,7 +140,7 @@ public class TaskServiceImpl implements TaskService {
     public String uploadTask(MultipartFile multipartFile) {
         byte[] task = IOUtils.toByteArray(multipartFile.getInputStream());
         String taskName = multipartFile.getOriginalFilename();
-        String filePath = rootPath + "task/" + taskName;
+        String filePath = rootPath + "upload/task/" + taskName;
         File file = new File(filePath);
         file.createNewFile();
         FileOutputStream fos = new FileOutputStream(file);

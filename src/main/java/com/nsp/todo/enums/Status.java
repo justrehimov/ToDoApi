@@ -29,7 +29,9 @@ public enum Status {
     CITY_NOT_FOUND(119, "City not found"),
     CITY_NOT_EXIST_IN_COUNTRY(120, "Country doesn't have this city"),
     CITY_HAS_ALREADY_BEEN_USED(121,"This city already has been used in address" ),
-    COUNTRY_ALREADY_HAS_BEEN_USED(122,"This country already has been used in address" );
+    COUNTRY_ALREADY_HAS_BEEN_USED(122,"This country already has been used in address" ),
+    LANGUAGE_HAS_BEEN_USED(123, "Language has already been used"),
+    TECHNOLOGY_HAS_BEEN_USED(124, "Technology has already been used");
     private Integer code;
     private String message;
 }

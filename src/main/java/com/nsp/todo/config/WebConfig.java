@@ -2,7 +2,6 @@ package com.nsp.todo.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,8 +31,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        String path = "file:///D:/Workspace/ToDoApi/src/main/resources/upload";
+        String path = "file:///E:/Ideaproject/ToDoApi/src/main/resources/upload";
         registry.addResourceHandler("/upload/**")
-                .addResourceLocations(path+"/cv",path + "/task",path + "/answer");
+                .addResourceLocations(path+ "/cv",path + "/upload/task",path + "/answer");
     }
 }

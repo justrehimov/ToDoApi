@@ -31,7 +31,6 @@ public class TechnologyServiceImpl implements TechnologyService {
     private final TechnologyRepo technologyRepo;
     private final ModelMapper modelMapper;
     private final MapperService mapperService;
-    private final UserRepo userRepo;
     @Override
     public ResponseModel<List<TechnologyResponse>> getAllTechnology() {
         List<Technology> technologies = technologyRepo.findAll();
@@ -85,8 +84,8 @@ public class TechnologyServiceImpl implements TechnologyService {
     public void deleteTechnology(Long id) {
         Technology technology = technologyRepo.findById(id)
                 .orElseThrow(()->new TechnologyException(Status.TECHNOLOGY_NOT_FOUND));
-        technology.getUsers().forEach(u->u.getTechnology().remove(technology));
-        userRepo.saveAll(technology.getUsers());
+        if(!technology.getUsers().isEmpty())
+            throw new TechnologyException(Status.TECHNOLOGY_HAS_BEEN_USED);
         technologyRepo.delete(technology);
     }
 

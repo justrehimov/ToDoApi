@@ -85,8 +85,8 @@ public class LanguageServiceImpl implements LanguageService {
     public void deleteLanguage(Long id) {
         Language language = languageRepo.findById(id)
                 .orElseThrow(()->new LanguageException(Status.LANGUAGE_NOT_FOUND));
-        language.getUsers().forEach(u->u.getLanguages().remove(language));
-        userRepo.saveAll(language.getUsers());
+        if(!language.getUsers().isEmpty())
+            throw new LanguageException(Status.LANGUAGE_HAS_BEEN_USED);
         languageRepo.delete(language);
     }
 }

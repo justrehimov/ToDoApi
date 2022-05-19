@@ -42,7 +42,7 @@ public class TaskController {
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public ResponseContainer addTask(@RequestPart("task") String task, @RequestPart("file") MultipartFile multipartFile){
+    public ResponseContainer addTask(@RequestPart("upload/task") String task, @RequestPart("file") MultipartFile multipartFile){
         taskService.addTask(task,multipartFile);
         return ResponseContainer.ok(Response.getSuccess());
     }

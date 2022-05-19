@@ -5,6 +5,5 @@ import org.springframework.mail.SimpleMailMessage;
 import javax.mail.internet.MimeMessage;
 
 public interface MailService {
-    void sendMail(SimpleMailMessage message);
-    void sendMail(MimeMessage message);
+    void sendMail(String from,String to,String subject,String body);
 }

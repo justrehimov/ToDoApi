@@ -144,14 +144,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @SneakyThrows
     public void sendConfirmMail(Token token){
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
-        helper.setFrom("NSP");
-        helper.setTo(token.getEmail());
-        helper.setSubject("Confirm your email address");
+        String from = "NSP";
+        String to = token.getEmail();
+        String subject = "Confirm your email address";
         String link = "http://localhost:4000/register/confirm/"+token.getToken();
-        helper.setText("<p>Hi, "+token.getUser().getName()+"<br><br>Please click <a href='"+link+"'>here</a>" +
-                " and confirm your email address",true);
-        mailService.sendMail(message);
+        String body = "<p>Hi, "+token.getUser().getName()+"<br><br>Please click <a href='"+link+"'>here</a>" +
+                " and confirm your email address";
+        mailService.sendMail(from,to,subject,body);
     }
+
 }
