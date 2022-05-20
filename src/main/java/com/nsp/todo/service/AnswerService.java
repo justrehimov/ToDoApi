@@ -14,7 +14,7 @@ public interface AnswerService {
 
     ResponseModel<List<AnswerResponse>> getAllAnswerByUserId(Long userId);
 
-    void uploadAnswer(String task, MultipartFile multipartFile);
+    void uploadAnswer(String answer, MultipartFile multipartFile);
 
     String uploadAnswer(MultipartFile multipartFile);
 

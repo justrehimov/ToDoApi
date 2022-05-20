@@ -15,7 +15,7 @@ public class RegisterController {
     private final UserDetailsServiceImpl userDetailsService;
 
     @PostMapping(value = "/register" ,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseContainer register(@RequestPart("user") String user, @RequestPart("upload/cv")MultipartFile multipartFile){
+    public ResponseContainer register(@RequestPart("user") String user, @RequestPart("cv") MultipartFile multipartFile){
        userDetailsService.register(user,multipartFile);
         return ResponseContainer.ok(Response.getSuccess());
     }

@@ -53,7 +53,7 @@ public class CvServiceImpl implements CvService {
             throw new CvException(Status.CV_IS_EMPTY);
         byte[] cv = IOUtils.toByteArray(multipartFile.getInputStream());
         String cvName = multipartFile.getOriginalFilename();
-        String cvPath = rootPath + "/upload/cv/" + user.getId() + cvName;
+        String cvPath = rootPath + "cv/" + user.getId() + cvName;
         File file = new File(cvPath);
         file.createNewFile();
         FileOutputStream fos = new FileOutputStream(file);

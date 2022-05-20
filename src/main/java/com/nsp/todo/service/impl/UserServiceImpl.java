@@ -99,21 +99,23 @@ public class UserServiceImpl implements UserService {
         updatedUser.setId(user.getId());
         Country country = user.getAddress().getCountry();
         City city = user.getAddress().getCity();
-        if(userDto.getAddress().getCountry()!=null)
-            country = mapper.map(userDto.getAddress().getCountry(),Country.class);
-        if(userDto.getAddress().getCity()!=null)
-            city = mapper.map(userDto.getAddress().getCity(),City.class);
-        if(!countryRepo.existsById(country.getId()))
-            throw new CountryException(Status.COUNTRY_NOT_FOUND);
-        if(!cityRepo.existsById(city.getId()))
-            throw new CityException(Status.CITY_NOT_FOUND);
-        if(cityRepo.getById(city.getId()).getCountry().getId()!=country.getId())
-            throw new CityException(Status.CITY_NOT_EXIST_IN_COUNTRY);
-        Address address = mapperService.updateObject(userDto.getAddress(),user.getAddress());
-        address.setCountry(country);
-        address.setCity(city);
-        address.setId(user.getAddress().getId());
-        updatedUser.setAddress(address);
+        if(userDto.getAddress()!=null) {
+            if (userDto.getAddress().getCountry() != null)
+                country = mapper.map(userDto.getAddress().getCountry(), Country.class);
+            if (userDto.getAddress().getCity() != null)
+                city = mapper.map(userDto.getAddress().getCity(), City.class);
+            if (!countryRepo.existsById(country.getId()))
+                throw new CountryException(Status.COUNTRY_NOT_FOUND);
+            if (!cityRepo.existsById(city.getId()))
+                throw new CityException(Status.CITY_NOT_FOUND);
+            if (cityRepo.getById(city.getId()).getCountry().getId() != country.getId())
+                throw new CityException(Status.CITY_NOT_EXIST_IN_COUNTRY);
+            Address address = mapperService.updateObject(userDto.getAddress(),user.getAddress());
+            address.setCountry(country);
+            address.setCity(city);
+            address.setId(user.getAddress().getId());
+            updatedUser.setAddress(address);
+        }
         if(!userDto.getLanguages().isEmpty()) {
             Set<Language> languages = userDto.getLanguages().stream()
                     .map(l -> {

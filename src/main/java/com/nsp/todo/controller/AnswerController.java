@@ -43,8 +43,8 @@ public class AnswerController {
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
-    public ResponseContainer uploadAnswer(@RequestPart("upload/task") String task, @RequestPart("file") MultipartFile multipartFile){
-        answerService.uploadAnswer(task,multipartFile);
+    public ResponseContainer uploadAnswer(@RequestPart("task") String answer, @RequestPart("file") MultipartFile multipartFile){
+        answerService.uploadAnswer(answer,multipartFile);
         return ResponseContainer.ok(Response.getSuccess());
     }
 

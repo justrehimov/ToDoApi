@@ -138,7 +138,7 @@ public class AnswerServiceImpl implements AnswerService {
     public String uploadAnswer(MultipartFile multipartFile) {
         byte[] task = IOUtils.toByteArray(multipartFile.getInputStream());
         String answerName = multipartFile.getOriginalFilename();
-        String path = rootPath + "/answer/" + answerName;
+        String path = rootPath + "answer/" + answerName;
         File file = new File(path);
         file.createNewFile();
         FileOutputStream fos = new FileOutputStream(file);

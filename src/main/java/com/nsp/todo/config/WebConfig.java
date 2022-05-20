@@ -31,7 +31,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        String path = "file:///E:/Ideaproject/ToDoApi/src/main/resources/upload";
+        String path = "file:///E:/Ideaprojects/ToDoApi/src/main/resources/upload";
         registry.addResourceHandler("/upload/**")
                 .addResourceLocations(path+ "/cv",path + "/upload/task",path + "/answer");
     }
